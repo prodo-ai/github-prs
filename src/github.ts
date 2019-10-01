@@ -24,7 +24,7 @@ export const getPullRequests = async (
     id: d.id,
     prNumber: d.number,
     title: d.title,
-    url: d.url,
+    url: d.html_url,
     author: d.user.login,
     authorImage: d.user.avatar_url,
     createdAt: d.created_at,

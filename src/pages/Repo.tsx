@@ -25,7 +25,7 @@ const PullRequest: React.FC<{ pullRequest: PullRequestModel }> = ({
   const created = new Date(pullRequest.createdAt);
 
   return (
-    <a href={pullRequest.url} className="none">
+    <a href={pullRequest.url} target="_blank" className="none">
       <div className="pull-request">
         <img className="pull-request__avatar" src={pullRequest.authorImage} />
         <div className="pull-request__info">
