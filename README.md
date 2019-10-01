@@ -1,6 +1,7 @@
-# Prodo Template
+# Github PRs
 
-This is a template project for the [Prodo web framework](https://prodo.dev).
+Github pull request list created with
+[Prodo](https://docs.prodo.dev/introduction/getting-started).
 
 ## Getting Started
 
