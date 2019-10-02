@@ -3,9 +3,9 @@ import { Link } from "@prodo/route";
 
 const Header = () => (
   <header>
-    <Link to="/" className="none">
-      Prodo PRs
-    </Link>
+    <div className="container">
+      <Link to="/">Github PR List</Link>
+    </div>
   </header>
 );
 
