@@ -1,12 +1,15 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 
 const APP_PATH = path.resolve(__dirname, "src");
+const PUBLIC_PATH = path.resolve(__dirname, "public");
+const DEST_PATH = path.resolve(__dirname, "dist");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -60,7 +63,7 @@ module.exports = {
   stats: "minimal",
 
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: DEST_PATH,
     filename: config.useHashInFilename ? "[name].[hash].js" : "bundle.js",
     chunkFilename: config.useHashInFilename
       ? "[name].[hash].chunk.js"
@@ -70,6 +73,10 @@ module.exports = {
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+  },
+
+  devServer: {
+    contentBase: PUBLIC_PATH,
   },
 
   optimization: {
@@ -99,7 +106,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(APP_PATH, "index.html"),
+      template: path.join(PUBLIC_PATH, "index.html"),
       ...(config.minimize
         ? {
             minify: {
@@ -117,6 +124,7 @@ module.exports = {
           }
         : {}),
     }),
+    isProduction && new CopyPlugin([{ from: PUBLIC_PATH, to: DEST_PATH }]),
     isProduction &&
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash:8].css",
