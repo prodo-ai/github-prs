@@ -4,7 +4,7 @@ import App from "./App";
 import { model } from "./model";
 import { createBrowserHistory } from "history";
 
-import "./styles.css";
+import "./styles.scss";
 
 const history = createBrowserHistory();
 const { Provider } = model.createStore({

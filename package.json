@@ -11,9 +11,9 @@
     "build": "rimraf dist && NODE_ENV=production webpack -p"
   },
   "dependencies": {
-    "@prodo/core": "^0.0.9",
+    "@prodo/core": "^0.0.11",
     "@prodo/devtools": "^0.0.11",
-    "@prodo/logger": "^0.0.9",
+    "@prodo/logger": "^0.0.11",
     "@prodo/route": "^0.0.11",
     "core-js": "2",
     "history": "^4.10.1",
