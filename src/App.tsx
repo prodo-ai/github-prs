@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Route, Switch } from "@prodo/route";
+import { Switch, Route } from "@prodo/route";
 import Header from "./components/Header";
+import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import Repo from "./pages/Repo";
 
@@ -12,6 +13,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/:owner/:repo" component={Repo} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   </div>

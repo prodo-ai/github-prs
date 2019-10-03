@@ -1,17 +1,9 @@
-export interface PullRequest {
-  id: number;
-  prNumber: number;
-  title: string;
-  url: string;
-  author: string;
-  authorImage: string;
-  createdAt: string;
-}
+import { IPullRequest } from "./model";
 
 export const getPullRequests = async (
   owner: string,
   repo: string,
-): Promise<PullRequest[]> => {
+): Promise<IPullRequest[]> => {
   const data = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/pulls`,
   ).then(res => res.json());
@@ -20,7 +12,7 @@ export const getPullRequests = async (
     throw new Error(data.message);
   }
 
-  const pullRequests: PullRequest[] = data.map((d: any) => ({
+  const pullRequests: IPullRequest[] = data.map((d: any) => ({
     id: d.id,
     prNumber: d.number,
     title: d.title,

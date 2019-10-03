@@ -1,18 +1,23 @@
 import { createModel } from "@prodo/core";
 import loggerPlugin from "@prodo/logger";
 import routePlugin from "@prodo/route";
-import devtoolsPlugin from "@prodo/devtools";
-import { PullRequest } from "./github";
+
+export interface IPullRequest {
+  id: number;
+  prNumber: number;
+  title: string;
+  url: string;
+  author: string;
+  authorImage: string;
+  createdAt: string;
+}
 
 export interface State {
-  search: string;
-  searchError?: string;
-  prError?: string;
-  pullRequests: { [key: string]: PullRequest[] };
+  pullRequests: { [key: string]: IPullRequest[] };
 }
 
 export const model = createModel<State>()
-  .with(routePlugin)
-  .with(loggerPlugin);
+  .with(loggerPlugin)
+  .with(routePlugin);
 
 export const { state, watch, dispatch } = model.ctx;
